@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vince's Barbers | Kettering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0F172A;--tan:#C4956A;--cream:#FDF6EC;--dark:#0a1020;--muted:#8896AB}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--navy);color:var(--cream);overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Merriweather',serif}
+
+/* CENTERED LAYOUT */
+.page-wrap{max-width:780px;margin:0 auto;padding:0 1.5rem}
+
+/* NAV */
+nav{background:var(--dark);border-bottom:2px solid var(--tan);padding:1rem 0;position:sticky;top:0;z-index:100}
+nav .page-wrap{display:flex;justify-content:space-between;align-items:center}
+.nav-brand{font-family:'Merriweather',serif;font-size:1.3rem;color:var(--tan);text-decoration:none;font-weight:700}
+.nav-list{display:flex;gap:1.8rem;list-style:none}
+.nav-list a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:400;transition:color .3s}
+.nav-list a:hover{color:var(--tan)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--tan);margin:5px 0;transition:all .3s}
+
+/* HERO - RIBBON BANNER */
+.hero{text-align:center;padding:6rem 0 4rem;position:relative}
+.ribbon{display:inline-block;position:relative;background:var(--tan);color:var(--navy);padding:1rem 3rem;font-family:'Merriweather',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;margin-bottom:2rem}
+.ribbon::before,.ribbon::after{content:'';position:absolute;top:0;width:0;height:0;border-style:solid}
+.ribbon::before{left:-20px;border-width:0 20px 28px 0;border-color:transparent var(--tan) transparent transparent}
+.ribbon::after{right:-20px;border-width:28px 20px 0 0;border-color:var(--tan) transparent transparent transparent}
+.hero-sub{font-size:1.1rem;color:var(--muted);line-height:1.7;max-width:550px;margin:0 auto 2rem;font-weight:300}
+.hero-badge{display:inline-block;border:2px solid var(--tan);color:var(--tan);padding:.6rem 2rem;font-family:'Merriweather',serif;font-size:.9rem;letter-spacing:2px;text-transform:uppercase}
+
+/* ORNATE DIVIDER */
+.ornament{text-align:center;padding:2.5rem 0;color:var(--tan);font-size:1.5rem;letter-spacing:8px;opacity:.5}
+
+/* SERVICES - CLASSIC PRICE LIST */
+section{padding:3.5rem 0}
+.section-head{text-align:center;margin-bottom:2.5rem}
+.section-head h2{font-size:1.8rem;color:var(--cream);margin-bottom:.5rem}
+.section-head p{color:var(--muted);font-size:.9rem}
+.price-list{list-style:none}
+.price-list li{display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0;border-bottom:1px dotted rgba(196,149,106,.25)}
+.price-list li:last-child{border-bottom:none}
+.price-name{font-family:'Merriweather',serif;font-size:1.05rem;color:var(--cream)}
+.price-dots{flex:1;border-bottom:2px dotted rgba(196,149,106,.2);margin:0 1rem;align-self:center;height:0}
+.price-val{font-family:'Merriweather',serif;font-size:1.2rem;color:var(--tan);font-weight:700;white-space:nowrap}
+
+/* STATS */
+.stats-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;text-align:center;padding:2rem 0}
+.stat-box{min-width:160px}
+.stat-box h3{font-size:1.4rem;color:var(--tan);margin-bottom:.3rem}
+.stat-box p{color:var(--muted);font-size:.85rem}
+
+/* GALLERY - VINTAGE FRAMES */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem}
+.vintage-frame{background:var(--dark);padding:12px;border:3px double var(--tan);position:relative}
+.vintage-frame::before{content:'';position:absolute;inset:6px;border:1px solid rgba(196,149,106,.3);pointer-events:none}
+.vintage-frame img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:sepia(.15)}
+.vintage-frame figcaption{text-align:center;padding:.8rem 0 .3rem;font-family:'Merriweather',serif;font-size:.8rem;color:var(--muted);font-style:italic}
+
+/* REVIEWS - BLOCKQUOTE */
+.reviews-list{display:flex;flex-direction:column;gap:2.5rem}
+.review-block{position:relative;padding:2rem 2rem 2rem 3rem;border-left:3px solid var(--tan);background:rgba(10,16,32,.6)}
+.review-block::before{content:'\201C';position:absolute;top:.5rem;left:.8rem;font-family:'Merriweather',serif;font-size:3rem;color:var(--tan);opacity:.4;line-height:1}
+.review-block p{font-style:italic;color:var(--cream);line-height:1.7;font-size:.95rem;margin-bottom:.8rem}
+.review-block cite{color:var(--tan);font-size:.85rem;font-style:normal;font-weight:700}
+
+/* HOURS TABLE */
+.hours-table{width:100%;border-collapse:collapse;max-width:500px;margin:0 auto}
+.hours-table caption{font-family:'Merriweather',serif;font-size:.8rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;padding-bottom:1rem}
+.hours-table td{padding:.8rem 1rem;text-align:left;border-bottom:1px solid rgba(196,149,106,.15);font-size:.95rem}
+.hours-table td:first-child{font-family:'Merriweather',serif;color:var(--cream);font-weight:700;width:120px}
+.hours-table td:last-child{color:var(--tan);text-align:right}
+.hours-table tr.closed td{color:var(--muted);opacity:.5}
+
+/* MAP & CONTACT */
+.contact-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.contact-details h3{font-size:1.3rem;color:var(--tan);margin-bottom:1.5rem}
+.contact-details p{color:var(--muted);margin-bottom:1rem;line-height:1.6;font-size:.95rem}
+.contact-details a{color:var(--tan);text-decoration:none}
+.map-frame{border:3px double var(--tan);padding:6px;background:var(--dark)}
+.map-frame iframe{width:100%;height:300px;border:0;filter:sepia(.2) contrast(1.05)}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 1rem;border-top:2px solid var(--tan);margin-top:3rem}
+footer p{color:var(--muted);font-size:.85rem}
+footer a{color:var(--tan);text-decoration:none}
+
+/* MOBILE */
+@media(max-width:640px){
+  .nav-list{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:var(--dark);padding:1rem 2rem;gap:1rem;border-bottom:2px solid var(--tan)}
+  .nav-list.open{display:flex}
+  .nav-toggle{display:block}
+  .contact-cols{grid-template-columns:1fr}
+  .ribbon{padding:.8rem 2rem;font-size:1.3rem}
+  .ribbon::before,.ribbon::after{border-width:0 15px 22px 0}
+  .ribbon::after{border-width:22px 15px 0 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="page-wrap">
+    <a href="#" class="nav-brand">Vince's Barbers</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-list').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-list">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <section class="hero">
+    <div class="ribbon">Vince's Barbers</div>
+    <p class="hero-sub">A proper gentleman's barbershop on Hawthorn Road, Kettering. No appointments, no fuss &mdash; just walk in for a quality cut at an honest price.</p>
+    <div class="hero-badge">Walk-Ins Welcome</div>
+  </section>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <section id="services">
+    <div class="section-head">
+      <h2>Price List</h2>
+      <p>Classic barbering at honest prices</p>
+    </div>
+    <ul class="price-list">
+      <li><span class="price-name">Gents Cut</span><span class="price-dots"></span><span class="price-val">&pound;10</span></li>
+      <li><span class="price-name">OAP Cut</span><span class="price-dots"></span><span class="price-val">&pound;8</span></li>
+      <li><span class="price-name">Kids Cut</span><span class="price-dots"></span><span class="price-val">&pound;7</span></li>
+      <li><span class="price-name">Beard Trim</span><span class="price-dots"></span><span class="price-val">&pound;6</span></li>
+      <li><span class="price-name">Hot Towel Shave</span><span class="price-dots"></span><span class="price-val">&pound;10</span></li>
+      <li><span class="price-name">Cut &amp; Shave</span><span class="price-dots"></span><span class="price-val">&pound;18</span></li>
+    </ul>
+  </section>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <div class="stats-row">
+    <div class="stat-box"><h3>Since Day One</h3><p>Serving the community</p></div>
+    <div class="stat-box"><h3>Walk-Ins Only</h3><p>No appointment needed</p></div>
+    <div class="stat-box"><h3>Community Favourite</h3><p>Trusted by locals</p></div>
+  </div>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <section id="gallery">
+    <div class="section-head">
+      <h2>The Shop</h2>
+    </div>
+    <div class="gallery-grid">
+      <figure class="vintage-frame"><img src="https://images.unsplash.com/photo-1585747860019-8c5e9d8c7a3a?w=800" alt="Barber shop" loading="lazy"><figcaption>Classic cuts</figcaption></figure>
+      <figure class="vintage-frame"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800" alt="Barber chair" loading="lazy"><figcaption>The chair</figcaption></figure>
+      <figure class="vintage-frame"><img src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=800" alt="Grooming" loading="lazy"><figcaption>Grooming tools</figcaption></figure>
+      <figure class="vintage-frame"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800" alt="Barbershop" loading="lazy"><figcaption>Hawthorn Road</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <section id="reviews">
+    <div class="section-head">
+      <h2>Kind Words</h2>
+    </div>
+    <div class="reviews-list">
+      <div class="review-block">
+        <p>Proper classic barbering the way it should be done. Vince knows exactly what he's doing &mdash; no gimmicks, just a great cut every time.</p>
+        <cite>Steve M.</cite>
+      </div>
+      <div class="review-block">
+        <p>Friendliest barber in Kettering. Vince always has time for a chat and the haircut is always spot on. Been going for years and wouldn't change.</p>
+        <cite>Alan P.</cite>
+      </div>
+      <div class="review-block">
+        <p>Best value barbershop around. You get a top-quality cut for a fair price. No need to book, just walk in. Can't beat it.</p>
+        <cite>Chris D.</cite>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <section id="hours">
+    <div class="section-head">
+      <h2>Opening Hours</h2>
+    </div>
+    <table class="hours-table">
+      <tr><td>Monday</td><td>8:00 &ndash; 5:00</td></tr>
+      <tr><td>Tuesday</td><td>8:00 &ndash; 5:00</td></tr>
+      <tr><td>Wednesday</td><td>8:00 &ndash; 5:00</td></tr>
+      <tr><td>Thursday</td><td>8:00 &ndash; 5:00</td></tr>
+      <tr><td>Friday</td><td>8:00 &ndash; 5:00</td></tr>
+      <tr><td>Saturday</td><td>6:00am &ndash; 2:00pm</td></tr>
+      <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+    </table>
+  </section>
+
+  <div class="ornament">&mdash; &#9830; &mdash;</div>
+
+  <section id="contact">
+    <div class="section-head">
+      <h2>Visit Us</h2>
+    </div>
+    <div class="contact-cols">
+      <div class="contact-details">
+        <h3>Vince's Barbers</h3>
+        <p>38 Hawthorn Road<br>Kettering<br>NN15 7HS</p>
+        <p>Phone: <a href="tel:01536517032">01536 517032</a></p>
+        <p>Walk-ins only &mdash; no appointment necessary.</p>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=Vince's+Barbers+38+Hawthorn+Road+Kettering&output=embed" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Built by <a href="https://twix.tf" target="_blank" rel="noopener">Harry</a></p>
+</footer>
+
+</body>
+</html>
